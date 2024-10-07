@@ -1,7 +1,7 @@
-#To do list task- 5 by HARSH RAJ
+# Initialize an empty dictionary to store contacts
+contacts = {}
 
-contacts ={}
-
+# Infinite loop to run the contact book app until the user chooses to exit
 while True:
     print("\nContact Book App")
     print("1. Create contact")
@@ -9,63 +9,75 @@ while True:
     print("3. Update contact")
     print("4. Delete contact")
     print("5. Search contact")
-    print("6. Count contact")
+    print("6. Count contacts")
     print("7. Exit")
-#option in user
-    choice = input("Enter your  choice=")
-    if choice == "1":
-        name = input("enter the your name=")
-        if name in contacts:
-            print("Contact name {name} alredy exists")
-        else:
-            age=input("Enter  the age=")
-            email=input("Enter the  email id=")
-            mobile=input("Enter the mobile number=")
-            contacts[name]={"age":int(age),"email":email,"mobile":mobile}
-            print("contact name{name} has been created successuflly:")
-#view contacts in user
-    elif choice =="2":
-        name=input("Enter the contact name to viwe=")
-        if name in contacts:
-            contact=contacts[name]
-            print("Name:{name},age:{age},mobile number:{mobile}")
-        else:
-            print("contact not found")
-    #user in Update contacts value
-    elif choice=="3":
-        name=input("Enter name to update contact=")
-        if name in contacts:
-            age=input("Enter the update age =")
-            email=input("Enter the  email id=")
-            mobile=input("Enter the mobile number=")
-            contacts[name]={"age":int(age),"email":email,"mobile":mobile}
-        else:
-            print("contact not found")
-#delet the contacts value 
-    elif choice=="4":
-        name=input("Enter the contact name to delete=")
-        if name in contacts:
-            del contactes[name]
-            print("contact Name {name} has been deleted successfully")
-        else:
-            print("contact not found")
-#serach the contact value
-    elif choice=="5":
-        serach_name=input("enter the contact name to serach=")
-        found =False
-        for name ,contact in contacts.items():
-            if serach_name.lower() in name.lower():
-                print("fount - Name {name},age {age}, Mobile number :{mobile},Email:{email")
-                found=True
-        if not found:
-           print("No contact found with that name")
-#count the contacts value
-    elif choice=="6":
-        print("Total contact  in your book:{len(contacts)}")
-    elif choice:
-        print("Good by closing the program")
-        break
-    else:
-        print("Invalid input")
+    
+    # Get user choice
+    choice = input("Enter your choice: ")
 
-            
+    # Option 1: Create a new contact
+    if choice == "1":
+        name = input("Enter the contact name: ")
+        if name in contacts:
+            print(f"Contact with the name '{name}' already exists.")
+        else:
+            age = input("Enter the age: ")
+            email = input("Enter the email ID: ")
+            mobile = input("Enter the mobile number: ")
+            contacts[name] = {"age": int(age), "email": email, "mobile": mobile}
+            print(f"Contact '{name}' has been created successfully.")
+    
+    # Option 2: View a contact by name
+    elif choice == "2":
+        name = input("Enter the contact name to view: ")
+        if name in contacts:
+            contact = contacts[name]
+            print(f"Name: {name}, Age: {contact['age']}, Mobile: {contact['mobile']}, Email: {contact['email']}")
+        else:
+            print("Contact not found.")
+    
+    # Option 3: Update an existing contact
+    elif choice == "3":
+        name = input("Enter the contact name to update: ")
+        if name in contacts:
+            age = input("Enter the updated age: ")
+            email = input("Enter the updated email ID: ")
+            mobile = input("Enter the updated mobile number: ")
+            contacts[name] = {"age": int(age), "email": email, "mobile": mobile}
+            print(f"Contact '{name}' has been updated successfully.")
+        else:
+            print("Contact not found.")
+    
+    # Option 4: Delete a contact
+    elif choice == "4":
+        name = input("Enter the contact name to delete: ")
+        if name in contacts:
+            del contacts[name]
+            print(f"Contact '{name}' has been deleted successfully.")
+        else:
+            print("Contact not found.")
+    
+    # Option 5: Search for a contact by name
+    elif choice == "5":
+        search_name = input("Enter the contact name to search: ")
+        found = False
+        for name, contact in contacts.items():
+            if search_name.lower() in name.lower():
+                print(f"Found - Name: {name}, Age: {contact['age']}, Mobile: {contact['mobile']}, Email: {contact['email']}")
+                found = True
+        if not found:
+            print("No contact found with that name.")
+    
+    # Option 6: Display the total number of contacts
+    elif choice == "6":
+        print(f"Total contacts in your book: {len(contacts)}")
+    
+    # Option 7: Exit the program
+    elif choice == "7":
+        print("Goodbye! Closing the program.")
+        break
+    
+    # Invalid input handling
+    else:
+        print("Invalid input. Please enter a valid option.")
+
